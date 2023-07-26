@@ -5,7 +5,8 @@ use image::{RgbImage, Rgba, Rgba32FImage};
 
 
 
-const IMAGE: &str = "test_images/black_bg_linear_rgb_32bit_float.exr";
+// const IMAGE: &str = "test_images/black_bg_linear_rgb_32bit_float.exr";
+const IMAGE: &str = "test_images/black_bg_linear_rgb_32bit_float_pattern.exr";
 const BURNIN: &str = "test_images/burnin0.exr";
 
 fn main() -> Result<(), Box<dyn std::error::Error>>{
@@ -15,7 +16,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>>{
 
     for x in 0..800 {
         for y in 0..400 {
-            img_new.put_pixel(x, y, Rgba([0 as f32, (x % 2) as f32, y as f32, 1.0]));
+            let col = img.get_pixel(x, y);
+            img_new.put_pixel(x, y, Rgba([col[0], col[1], col[2], col[3]]));
         }
     }
     img_new.save("test_images/black_bg_linear_rgb_32bit_float_new.exr")?;
