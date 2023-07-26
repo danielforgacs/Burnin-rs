@@ -15,8 +15,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>>{
 
     for x in 0..800 {
         for y in 0..400 {
-            // img_new.put_pixel(x, y, Rgba([0 as f32, (x % 2) as f32, y as f32, 0.0]));
-            img_new.put_pixel(x, y, Rgba([1.0, 0.5, 0.0, 1.0]));
+            img_new.put_pixel(x, y, Rgba([0 as f32, (x % 2) as f32, y as f32, 1.0]));
         }
     }
     img_new.save("test_images/black_bg_linear_rgb_32bit_float_new.exr")?;
