@@ -1,3 +1,6 @@
+# TEST IMAGES SOURCE:
+# https://openexr.com/en/latest/_test_images/index.html#test-images
+
 img_dir=rnd_images
 if [ -d $img_dir ]
 then
