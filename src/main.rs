@@ -5,8 +5,7 @@ use image::{RgbImage, Rgba, Rgba32FImage};
 
 
 
-// const IMAGE: &str = "test_images/black_bg_linear_rgb_32bit_float.exr";
-const IMAGE: &str = "test_images/black_bg_linear_rgb_32bit_float_pattern.exr";
+const IMAGE: &str = "rnd_images/AllHalfValues.exr";
 const BURNIN: &str = "test_images/burnin0.exr";
 
 fn main() -> Result<(), Box<dyn std::error::Error>>{
