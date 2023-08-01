@@ -14,10 +14,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>>{
     let mut img_new = Rgb32FImage::new(1500, 1500);
 
 
-    for y in 0..400 {
-        for x in 0..800 {
-            let col = img.get_pixel(x, y);
+    for y in 0..255 {
+        for x in 0..255 {
             let bin = burnin.get_pixel(x, y);
+            let col = img.get_pixel(x, y);
             let new_col = [col[0] * col[3], col[1] * col[3], col[2] * col[3]];
             img_new.put_pixel(x, y, Rgb([new_col[0], new_col[1], new_col[2]]));
         }
