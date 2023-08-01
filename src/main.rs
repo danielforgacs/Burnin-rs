@@ -10,7 +10,11 @@ const BURNIN: &str = "render/burnin_uv_map_1280x720_32f_rgba_no_premult.exr";
 
 fn main() -> Result<(), Box<dyn std::error::Error>>{
     let mut img = ImageReader::open(IMAGE)?.decode()?.to_rgba32f();
+    dbg!(&img.width());
+    dbg!(&img.height());
     let burnin = ImageReader::open(BURNIN)?.decode()?.to_rgba32f();
+    dbg!(&burnin.width());
+    dbg!(&burnin.height());
     let mut img_new = Rgb32FImage::new(1500, 1500);
 
 
