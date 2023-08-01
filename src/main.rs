@@ -1,24 +1,27 @@
 use std::io::Cursor;
 use image::io::Reader as ImageReader;
-use image::{RgbImage, Rgba, Rgba32FImage};
+use image::{RgbImage, Rgb, Rgba, Rgba32FImage, Rgb32FImage};
 
 
 
 
 const IMAGE: &str = "rnd_images/AllHalfValues.exr";
-const BURNIN: &str = "test_images/burnin0.exr";
+const BURNIN: &str = "render/burnin_uv_map_1280x720_32f_rgba_no_premult.exr";
 
 fn main() -> Result<(), Box<dyn std::error::Error>>{
     let mut img = ImageReader::open(IMAGE)?.decode()?.to_rgba32f();
-    let mut img_new = Rgba32FImage::new(800, 400);
+    let burnin = ImageReader::open(BURNIN)?.decode()?.to_rgb32f();
+    let mut img_new = Rgb32FImage::new(1500, 1500);
 
 
-    for x in 0..800 {
-        for y in 0..400 {
+    for y in 0..400 {
+        for x in 0..800 {
             let col = img.get_pixel(x, y);
-            img_new.put_pixel(x, y, Rgba([col[0], col[1], col[2], col[3]]));
+            let bin = burnin.get_pixel(x, y);
+            let new_col = [col[0] * col[3], col[1] * col[3], col[2] * col[3]];
+            img_new.put_pixel(x, y, Rgb([new_col[0], new_col[1], new_col[2]]));
         }
     }
-    img_new.save("test_images/black_bg_linear_rgb_32bit_float_new.exr")?;
+    img_new.save("result.exr")?;
     Ok(())
 }
