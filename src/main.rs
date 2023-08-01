@@ -19,9 +19,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>>{
             let col = img.get_pixel(x, y);
             let bin = burnin.get_pixel(x, y);
             let new_col = [
-                bin[0] * (1.0 - bin[3]),
-                bin[1] * (1.0 - bin[3]),
-                bin[2] * (1.0 - bin[3])
+                (bin[0] * (1.0 - bin[3])) + (col[0] * bin[3]),
+                (bin[1] * (1.0 - bin[3])) + (col[1] * bin[3]),
+                (bin[2] * (1.0 - bin[3])) + (col[2] * bin[3]),
             ];
             img_new.put_pixel(x, y, Rgb([new_col[0], new_col[1], new_col[2]]));
         }
