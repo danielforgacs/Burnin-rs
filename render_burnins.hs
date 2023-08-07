@@ -1,0 +1,1 @@
+hython burnins.hipnc -c 'hou.parm("/out/RENDER_ALL/execute").pressButton()'
